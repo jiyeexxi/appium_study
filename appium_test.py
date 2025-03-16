@@ -18,16 +18,11 @@ def driver():
     yield driver
     driver.quit()
 
+def test_001(driver):
+    # 버튼 클릭을 위한 XPath
+    button_xpath = '//android.widget.Button[@content-desc="button_1"]'
+    # 버튼을 찾고 클릭
+    button = driver.find_element(By.XPATH, button_xpath)
+    button.click()
 
-# 버튼 클릭을 위한 XPath
-button_xpath = '//android.widget.Button[@content-desc="button_1"]'
-
-# 버튼을 찾고 클릭
-button = driver.find_element(By.XPATH, button_xpath)
-button.click()
-
-# 5초 대기 후 테스트 종료
-time.sleep(5)
-
-# 드라이버 종료
-driver.quit()
+    assert button.tag_name == "touch!", "버튼 클자가 변경됨"
